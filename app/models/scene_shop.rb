@@ -1,0 +1,2 @@
+class SceneShop < ApplicationRecord
+end
