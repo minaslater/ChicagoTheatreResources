@@ -1,0 +1,2 @@
+class LightingVendor < ApplicationRecord
+end
