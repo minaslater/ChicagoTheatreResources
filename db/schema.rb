@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412024311) do
+ActiveRecord::Schema.define(version: 20170415140732) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street1",       null: false
@@ -44,6 +44,18 @@ ActiveRecord::Schema.define(version: 20170412024311) do
     t.datetime "updated_at",     null: false
     t.index ["recipient_id"], name: "index_emails_on_recipient_id"
     t.index ["recipient_type"], name: "index_emails_on_recipient_type"
+  end
+
+  create_table "hours", force: :cascade do |t|
+    t.integer  "day_of_week",                null: false
+    t.integer  "open"
+    t.integer  "close"
+    t.boolean  "closed",      default: true
+    t.integer  "vendor_id",                  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["closed"], name: "index_hours_on_closed"
+    t.index ["vendor_id"], name: "index_hours_on_vendor_id"
   end
 
   create_table "interpreters", force: :cascade do |t|
