@@ -1,0 +1,30 @@
+<table border=1>
+  <tr>
+    <th>Name</th>
+    <th>Accreditation</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    <th>Available for Rehearsals?</th>
+    <th>Available for Performances?</th>
+    <th>Edit</th>
+  </tr>
+  <% @interpreters.each do |interpreter| %>
+    <tr>
+      <td><%= interpreter.name %></td>
+      <td><%= interpreter.accreditation %></td>
+      <td>
+        <% if interpreter.emails.first %>
+          <%= interpreter.emails.first.address %>
+        <% end %>
+      </td>
+      <td>
+        <% if interpreter.phones.first %>
+          <%= interpreter.phones.first.number %>
+        <% end %>
+      </td>
+      <td><%= interpreter.rehearsal_avail %></td>
+      <td><%= interpreter.performance_avail %></td>
+      <td><%= link_to "Edit Info", edit_interpreter_path(interpreter) %></td>
+    </tr>
+  <% end %>
+</table>
