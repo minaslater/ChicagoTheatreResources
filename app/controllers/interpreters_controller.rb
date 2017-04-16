@@ -1,6 +1,6 @@
 class InterpretersController < ApplicationController
   def index
-    render plain: "index"
+    @interpreters = Interpreter.all
   end
 
   def show

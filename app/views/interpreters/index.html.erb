@@ -1,0 +1,16 @@
+<table border=1>
+  <tr>
+    <th>Name</th>
+    <th>Accreditation</th>
+    <th>Available for Rehearsals?</th>
+    <th>Available for Performances?</th>
+  </tr>
+  <% @interpreters.each do |interpreter| %>
+    <tr>
+      <td><%= interpreter.name %></td>
+      <td><%= interpreter.accreditation %></td>
+      <td><%= interpreter.rehearsal_avail %></td>
+      <td><%= interpreter.performance_avail %></td>
+    </tr>
+  <% end %>
+</table>
