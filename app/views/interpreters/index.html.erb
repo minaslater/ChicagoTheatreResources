@@ -11,16 +11,16 @@
     <tr>
       <td><%= interpreter.name %></td>
       <td><%= interpreter.accreditation %></td>
-      <% if interpreter.emails.first != nil %>
-        <td><%= interpreter.emails.first.address %></td>
-      <% else %>
-        <td></td>
-      <% end %>
-      <% if interpreter.phones.first != nil %>
-        <td><%= interpreter.phones.first.number %></td>
-      <% else %>
-        <td></td>
-      <% end %>
+      <td>
+        <% if interpreter.emails.first %>
+          <%= interpreter.emails.first.address %>
+        <% end %>
+      </td>
+      <td>
+        <% if interpreter.phones.first %>
+          <%= interpreter.phones.first.number %>
+        <% end %>
+      </td>
       <td><%= interpreter.rehearsal_avail %></td>
       <td><%= interpreter.performance_avail %></td>
     </tr>
