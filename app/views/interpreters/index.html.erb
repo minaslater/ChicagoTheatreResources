@@ -6,6 +6,7 @@
     <th>Phone Number</th>
     <th>Available for Rehearsals?</th>
     <th>Available for Performances?</th>
+    <th>Edit</th>
   </tr>
   <% @interpreters.each do |interpreter| %>
     <tr>
@@ -23,6 +24,7 @@
       </td>
       <td><%= interpreter.rehearsal_avail %></td>
       <td><%= interpreter.performance_avail %></td>
+      <td><%= link_to "Edit Info", edit_interpreter_path(interpreter) %></td>
     </tr>
   <% end %>
 </table>
