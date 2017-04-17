@@ -1,6 +1,6 @@
 class LightingVendorsController < ApplicationController
   def index
-    render plain: "index"
+    @vendors = LightingVendor.all
   end
 
   def show
