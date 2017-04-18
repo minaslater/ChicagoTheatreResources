@@ -1,0 +1,42 @@
+<table border=1>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Contact</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    <th>Rental?</th>
+    <th>Sales?</th>
+    <th>Deliver?</th>
+    <th>Edit</th>
+  </tr>
+  <% @vendors.each do |vendor| %>
+    <tr>
+      <td><%= vendor.name %></td>
+      <td>
+        <% if vendor.addresses %>
+          <%= vendor.address %>
+        <% end %>
+      </td>
+      <td>
+        <% if vendor.contacts.first %>
+          <%= vendor.contacts.first.name %>
+        <% end %>
+      </td>
+      <td>
+        <% if vendor.emails.first %>
+          <%= vendor.emails.first.address %>
+        <% end %>
+      </td>
+      <td>
+        <% if vendor.phones.first %>
+          <%= vendor.phones.first.number %>
+        <% end %>
+      </td>
+      <td><%= vendor.rental %></td>
+      <td><%= vendor.sales %></td>
+      <td><%= vendor.deliver %></td>
+      <td><%= link_to "Edit Info", edit_lighting_vendor_path(vendor) %></td>
+    </tr>
+  <% end %>
+</table>
