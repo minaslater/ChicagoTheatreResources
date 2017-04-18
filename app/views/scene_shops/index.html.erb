@@ -13,7 +13,7 @@
       <td><%= shop.name %></td>
       <td>
         <% if shop.addresses %>
-          <%= shop.address %>
+          <%= shop.addresses.first.combine %>
         <% end %>
       </td>
       <td>

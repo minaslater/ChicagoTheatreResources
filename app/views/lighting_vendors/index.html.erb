@@ -15,7 +15,7 @@
       <td><%= vendor.name %></td>
       <td>
         <% if vendor.addresses %>
-          <%= vendor.address %>
+          <%= vendor.addresses.first.combine %>
         <% end %>
       </td>
       <td>

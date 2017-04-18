@@ -15,7 +15,7 @@
       <td><%= space.name %></td>
       <td>
         <% if space.addresses %>
-          <%= space.address %>
+          <%= space.addresses.first.combine %>
         <% end %>
       </td>
       <td>
