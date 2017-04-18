@@ -1,6 +1,6 @@
 class RehearsalSpacesController < ApplicationController
   def index
-    render plain: "index"
+    @rehearsal_spaces = RehearsalSpace.all
   end
 
   def show

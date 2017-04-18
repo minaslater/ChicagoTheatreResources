@@ -1,0 +1,54 @@
+<table border=1>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Contact</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    <th>Cost</th>
+    <th>Cost Unit</th>
+    <th>Notes</th>
+    <th>Edit</th>
+  </tr>
+  <% @rehearsal_spaces.each do |space| %>
+    <tr>
+      <td><%= space.name %></td>
+      <td>
+        <% if space.addresses %>
+          <%= space.address %>
+        <% end %>
+      </td>
+      <td>
+        <% if space.contacts.first %>
+          <%= space.contacts.first.name %>
+        <% end %>
+      </td>
+      <td>
+        <% if space.emails.first %>
+          <%= space.emails.first.address %>
+        <% end %>
+      </td>
+      <td>
+        <% if space.phones.first %>
+          <%= space.phones.first.number %>
+        <% end %>
+      </td>
+      <td>
+        <% if space.cost %>
+          <%= space.cost %>
+        <% end %>
+      </td>
+      <td>
+        <% if space.cost_unit %>
+          <%= space.cost_unit %>
+        <% end %>
+      </td>
+      <td>
+        <% if space.notes %>
+          <%= space.notes %>
+        <% end %>
+      </td>
+      <td><%= link_to "Edit Info", edit_rehearsal_space_path(space) %></td>
+    </tr>
+  <% end %>
+</table>
