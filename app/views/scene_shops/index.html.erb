@@ -1,0 +1,42 @@
+<table border=1>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Contact</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    <th>Website</th>
+    <th>Edit</th>
+  </tr>
+  <% @scene_shops.each do |shop| %>
+    <tr>
+      <td><%= shop.name %></td>
+      <td>
+        <% if shop.addresses %>
+          <%= shop.addresses.first.combine %>
+        <% end %>
+      </td>
+      <td>
+        <% if shop.contacts.first %>
+          <%= shop.contacts.first.name %>
+        <% end %>
+      </td>
+      <td>
+        <% if shop.emails.first %>
+          <%= shop.emails.first.address %>
+        <% end %>
+      </td>
+      <td>
+        <% if shop.phones.first %>
+          <%= shop.phones.first.number %>
+        <% end %>
+      </td>
+      <td>
+        <% if shop.website %>
+          <%= shop.website %>
+        <% end %>
+      </td>
+      <td><%= link_to "Edit Info", edit_scene_shop_path(shop) %></td>
+    </tr>
+  <% end %>
+</table>

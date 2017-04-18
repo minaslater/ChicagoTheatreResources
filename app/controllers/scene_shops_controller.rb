@@ -1,6 +1,6 @@
 class SceneShopsController < ApplicationController
   def index
-    render plain: "index"
+    @scene_shops = SceneShop.all
   end
 
   def show
