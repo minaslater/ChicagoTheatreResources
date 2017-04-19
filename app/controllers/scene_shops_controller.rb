@@ -4,7 +4,7 @@ class SceneShopsController < ApplicationController
   end
 
   def show
-    render plain: "show"
+    @shop = SceneShop.find(params[:id])
   end
 
   def new

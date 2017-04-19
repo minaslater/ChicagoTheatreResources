@@ -1,0 +1,31 @@
+<h1><%= @interpreter.name %></h1>
+<h2>Accreditation:</h2>
+<p><%= @interpreter.accreditation %></p>
+<h2>Email:</h2>
+<p>
+  <% if @interpreter.emails.first %>
+    <%= @interpreter.emails.first.address %>
+  <% end %>
+</p>
+<h2>Phone Number:</h2>
+<p>
+  <% if @interpreter.phones.first %>
+    <%= @interpreter.phones.first.number %>
+  <% end %>
+</p>
+<h2>Available for Rehearsals?</h2>
+<p>
+  <% if @interpreter.rehearsal_avail %>
+    Yes
+  <% else %>
+    No
+  <% end %>
+</p>
+<h2>Available for Performances?</h2>
+<p>
+  <% if @interpreter.performance_avail %>
+    Yes
+  <% else %>
+    No
+  <% end %>
+</p>

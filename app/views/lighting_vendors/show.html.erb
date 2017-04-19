@@ -1,0 +1,49 @@
+<h1><%= @vendor.name %></h1>
+<h2>Contact:</h2>
+<p>
+  <% if @vendor.contacts.first %>
+    <%= @vendor.contacts.first.name %>
+  <% end %>
+</p>
+<h2>Email:</h2>
+<p>
+  <% if @vendor.emails.first %>
+    <%= @vendor.emails.first.address %>
+  <% end %>
+</p>
+<h2>Phone Number:</h2>
+<p>
+  <% if @vendor.phones.first %>
+    <%= @vendor.phones.first.number %>
+  <% end %>
+</p>
+<h2>Address:</h2>
+<p>
+  <% if @vendor.addresses.first %>
+    <%= @vendor.addresses.first.combine %>
+  <% end %>
+</p>
+<h2>Delivery?</h2>
+<p>
+  <% if @vendor.deliver %>
+    Yes
+  <% else %>
+    No
+  <% end %>
+</p>
+<h2>Rental?</h2>
+<p>
+  <% if @vendor.rental %>
+    Yes
+  <% else %>
+    No
+  <% end %>
+</p>
+<h2>Sales?</h2>
+<p>
+  <% if @vendor.sales %>
+    Yes
+  <% else %>
+    No
+  <% end %>
+</p>

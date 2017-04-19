@@ -1,0 +1,37 @@
+<h1><%= @rehearsal_space.name %></h1>
+<h2>Contact:</h2>
+<p>
+  <% if @rehearsal_space.contacts.first %>
+    <%= @rehearsal_space.contacts.first.name %>
+  <% end %>
+</p>
+<h2>Email:</h2>
+<p>
+  <% if @rehearsal_space.emails.first %>
+    <%= @rehearsal_space.emails.first.address %>
+  <% end %>
+</p>
+<h2>Phone Number:</h2>
+<p>
+  <% if @rehearsal_space.phones.first %>
+    <%= @rehearsal_space.phones.first.number %>
+  <% end %>
+</p>
+<h2>Address:</h2>
+<p>
+  <% if @rehearsal_space.addresses.first %>
+    <%= @rehearsal_space.addresses.first.combine %>
+  <% end %>
+</p>
+<h2>Cost:</h2>
+<p>
+  <% if @rehearsal_space.cost %>
+    <%= @rehearsal_space.cost %>per<%= @rehearsal_space.cost_unit %>
+  <% end %>
+</p>
+<h2>Notes:</h2>
+<p>
+  <% if @rehearsal_space.notes %>
+    <%= @rehearsal_space.notes %>
+  <% end %>
+</p>

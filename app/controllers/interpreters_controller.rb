@@ -4,7 +4,7 @@ class InterpretersController < ApplicationController
   end
 
   def show
-    render plain: "show"
+    @interpreter = Interpreter.find(params[:id])
   end
 
   def new

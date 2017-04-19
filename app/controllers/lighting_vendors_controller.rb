@@ -4,7 +4,7 @@ class LightingVendorsController < ApplicationController
   end
 
   def show
-    render plain: "show"
+    @vendor = LightingVendor.find(params[:id])
   end
 
   def new

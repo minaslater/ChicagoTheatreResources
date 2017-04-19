@@ -4,7 +4,7 @@ class RehearsalSpacesController < ApplicationController
   end
 
   def show
-    render plain: "show"
+    @rehearsal_space = RehearsalSpace.find(params[:id])
   end
 
   def new
