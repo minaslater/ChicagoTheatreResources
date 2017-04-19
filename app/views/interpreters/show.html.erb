@@ -2,9 +2,17 @@
 <h2>Accreditation:</h2>
 <p><%= @interpreter.accreditation %></p>
 <h2>Email:</h2>
-<p><%= @interpreter.emails.first.address %></p>
+<p>
+  <% if @interpreter.emails.first %>
+    <%= @interpreter.emails.first.address %>
+  <% end %>
+</p>
 <h2>Phone Number:</h2>
-<p><%= @interpreter.phones.first.number %></p>
+<p>
+  <% if @interpreter.phones.first %>
+    <%= @interpreter.phones.first.address %>
+  <% end %>
+</p>
 <h2>Available for Rehearsals?</h2>
 <p>
   <% if @interpreter.rehearsal_avail %>
