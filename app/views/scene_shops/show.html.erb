@@ -1,6 +1,12 @@
 <h1><%= @shop.name %></h1>
 <h2>Website:</h2>
 <p><%= @shop.website %></p>
+<h2>Contact:</h2>
+<p>
+  <% if @shop.contacts.first %>
+    <%= @shop.contacts.first.name %>
+  <% end %>
+</p>
 <h2>Email:</h2>
 <p>
   <% if @shop.emails.first %>
