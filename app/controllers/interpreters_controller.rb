@@ -29,7 +29,11 @@ class InterpretersController < ApplicationController
   end
 
   def update
-    render plain: "update"
+    interpreter_to_update = Interpreter.find(params[:id])
+    interpreter_to_update.update(interpreter_params)
+    interpreter_to_update.emails.update(email_params)
+    interpreter_to_update.phones.update(phone_params)
+    redirect_to action: "index"
   end
 
   def destroy

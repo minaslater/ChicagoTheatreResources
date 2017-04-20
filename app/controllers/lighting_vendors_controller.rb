@@ -26,16 +26,22 @@ class LightingVendorsController < ApplicationController
   end
 
   def create
-    new_space = LightingVendor.create(rehearsal_space_params)
-    new_space.emails.create(email_params)
-    new_space.phones.create(phone_params)
-    new_space.addresses.create(address_params)
-    new_space.contacts.create(contact_params)
+    new_vendor = LightingVendor.create(rehearsal_space_params)
+    new_vendor.emails.create(email_params)
+    new_vendor.phones.create(phone_params)
+    new_vendor.addresses.create(address_params)
+    new_vendor.contacts.create(contact_params)
     redirect_to action: "index"
   end
 
   def update
-    render plain: "update"
+    vendor_to_update = LightingVendor.find(params[:id])
+    vendor_to_update.update(lighting_vendor_params)
+    vendor_to_update.emails.update(email_params)
+    vendor_to_update.phones.update(phone_params)
+    vendor_to_update.addresses.update(address_params)
+    vendor_to_update.contacts.update(contact_params)
+    redirect_to action: "index"
   end
 
   def destroy
@@ -44,7 +50,7 @@ class LightingVendorsController < ApplicationController
 
   private
 
-  def rehearsal_space_params
+  def lighting_vendor_params
     params.require(:lighting_vendor).permit(:name, :deliver, :rental, :sales)
   end
 

@@ -35,7 +35,13 @@ class RehearsalSpacesController < ApplicationController
   end
 
   def update
-    render plain: "update"
+    space_to_update = RehearsalSpace.find(params[:id])
+    space_to_update.update(rehearsal_space_params)
+    space_to_update.emails.update(email_params)
+    space_to_update.phones.update(phone_params)
+    space_to_update.addresses.update(address_params)
+    space_to_update.contacts.update(contact_params)
+    redirect_to action: "index"
   end
 
   def destroy

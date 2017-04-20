@@ -35,7 +35,13 @@ class SceneShopsController < ApplicationController
   end
 
   def update
-    render plain: "update"
+    shop_to_update = SceneShop.find(params[:id])
+    shop_to_update.update(scene_shop_params)
+    shop_to_update.emails.update(email_params)
+    shop_to_update.phones.update(phone_params)
+    shop_to_update.addresses.update(address_params)
+    shop_to_update.contacts.update(contact_params)
+    redirect_to action: "index"
   end
 
   def destroy
