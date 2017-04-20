@@ -1,0 +1,21 @@
+<%= form_for(@interpreter) do |f| %>
+  First Name:
+  <%= f.text_field :first_name %>
+  Last Name:
+  <%= f.text_field :last_name %>
+  Training/Accreditation:
+  <%= f.text_field :accreditation %>
+
+  <%= f.fields_for(@phone) do |phone|%>
+    Phone Number:
+    <%= phone.telephone_field :number %>
+  <% end %>
+  <%= f.fields_for(@email) do |email|%>
+    Email Address:
+    <%= email.email_field :address %>
+  <% end %>
+
+  <%= f.check_box :rehearsal_avail %>Available for Rehearsal
+  <%= f.check_box :performance_avail %>Available for Performance
+  <%= f.submit %>
+<% end %>
