@@ -12,6 +12,7 @@ class RehearsalSpacesController < ApplicationController
     @email = Email.new
     @phone = Phone.new
     @address = Address.new
+    @contact = Contact.new
     render "form"
   end
 
@@ -20,6 +21,7 @@ class RehearsalSpacesController < ApplicationController
     @email = @rehearsal_space.emails.first
     @phone = @rehearsal_space.phones.first
     @address = @rehearsal_space.addresses.first
+    @contact = @rehearsal_space.contacts.first
     render "form"
   end
 
@@ -28,6 +30,7 @@ class RehearsalSpacesController < ApplicationController
     new_space.emails.create(email_params)
     new_space.phones.create(phone_params)
     new_space.addresses.create(address_params)
+    new_space.contacts.create(contact_params)
     redirect_to action: "index"
   end
 
@@ -55,5 +58,9 @@ class RehearsalSpacesController < ApplicationController
 
   def address_params
     params.require(:rehearsal_space).permit(address: [:street1, :street2, :city, :state, :zip_code])[:address]
+  end
+
+  def contact_params
+    params.require(:rehearsal_space).permit(contact: :name)[:contact]
   end
 end
