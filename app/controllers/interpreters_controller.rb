@@ -16,6 +16,8 @@ class InterpretersController < ApplicationController
 
   def edit
     @interpreter = Interpreter.find(params[:id])
+    @email = @interpreter.emails.first
+    @phone = @interpreter.phones.first
     render "form"
   end
 
@@ -23,7 +25,7 @@ class InterpretersController < ApplicationController
     new_interpreter = Interpreter.create(interpreter_params)
     new_interpreter.emails.create(email_params)
     new_interpreter.phones.create(phone_params)
-    redirect_to "index"
+    redirect_to action: "index"
   end
 
   def update
