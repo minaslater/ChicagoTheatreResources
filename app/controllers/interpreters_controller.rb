@@ -77,19 +77,19 @@ class InterpretersController < ApplicationController
   end
 
   def update_email(interpreter)
-    if interpreter.emails
-      interpreter.emails.update(email_params)
+    if interpreter.emails.first
+      interpreter.emails.first.update(email_params)
     else
-      new_email = Email.new(email_params)
+      new_email = interpreter.emails.build(email_params)
       new_email.save if new_email.valid?
     end
   end
 
   def update_phone(interpreter)
-    if interpreter.phones
-      interpreter.phones.update(phone_params)
+    if interpreter.phones.first
+      interpreter.phones.first.update(phone_params)
     else
-      new_phone = Phone.new(phone_params)
+      new_phone = interpreter.phones.build(phone_params)
       new_phone.save if new_phone.valid?
     end
   end
