@@ -22,10 +22,18 @@ class InterpretersController < ApplicationController
   end
 
   def create
-    new_interpreter = Interpreter.create(interpreter_params)
-    new_interpreter.emails.create(email_params)
-    new_interpreter.phones.create(phone_params)
-    redirect_to action: "index"
+    new_interpreter = Interpreter.new(interpreter_params)
+    if new_interpreter.save
+      new_email = new_interpreter.emails.new(email_params)
+      new_phone = new_interpreter.phones.new(phone_params)
+      new_email.save if new_email.valid?
+      new_phone.save if new_phone.valid?
+      flash[:notice] = "Interpreter saved"
+      redirect_to action: "index"
+    else
+      flash[:alert] = "Womp womp..."
+      redirect_to :back
+    end
   end
 
   def update
