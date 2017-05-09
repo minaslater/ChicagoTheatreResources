@@ -16,8 +16,16 @@ class InterpretersController < ApplicationController
 
   def edit
     @interpreter = Interpreter.find(params[:id])
-    @email = @interpreter.emails.first
-    @phone = @interpreter.phones.first
+    if @interpreter.emails.first
+      @email = @interpreter.emails.first
+    else
+      @email = Email.new
+    end
+    if @interpreter.phones.first
+      @phone = @interpreter.phones.first
+    else
+      @phone = Phone.new
+    end
     render "form"
   end
 
@@ -72,7 +80,7 @@ class InterpretersController < ApplicationController
     if interpreter.emails
       interpreter.emails.update(email_params)
     else
-      new_email = new_interpreter.emails.new(email_params)
+      new_email = Email.new(email_params)
       new_email.save if new_email.valid?
     end
   end
@@ -81,8 +89,8 @@ class InterpretersController < ApplicationController
     if interpreter.phones
       interpreter.phones.update(phone_params)
     else
-      new_phone = new_interpreter.phones.new(phone_params)
-      new_phone.save if new_email.valid?
+      new_phone = Phone.new(phone_params)
+      new_phone.save if new_phone.valid?
     end
   end
 end
