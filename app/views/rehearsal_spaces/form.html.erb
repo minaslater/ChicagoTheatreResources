@@ -1,0 +1,36 @@
+<%= form_for(@rehearsal_space) do |f| %>
+  Name:
+  <%= f.text_field :name %>
+  
+  <%= f.fields_for(@contact) do |contact| %>
+    Contact:
+    <%= contact.text_field :name %>
+  <% end %>
+  <%= f.fields_for(@phone) do |phone|%>
+    Phone Number:
+    <%= phone.telephone_field :number %>
+  <% end %>
+  <%= f.fields_for(@email) do |email|%>
+    Email Address:
+    <%= email.email_field :address %>
+  <% end %>
+  <%= f.fields_for(@address) do |address|%>
+    Street 1:
+    <%= address.text_field :street1 %>
+    Street 2:
+    <%= address.text_field :street2 %>
+    City:
+    <%= address.text_field :city %>
+    State:
+    <%= address.text_field :state %>
+    Zip Code:
+    <%= address.text_field :zip_code %>
+  <% end %>
+
+  Cost:
+  <%= f.number_field :cost %>
+  <%= f.select :cost_unit, ["per hour", "per day", "per week", "other (specify in Notes)"] %>
+  Notes:
+  <%= f.text_area :notes %>
+  <%= f.submit %>
+<% end %>
