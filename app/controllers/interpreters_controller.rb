@@ -16,16 +16,16 @@ class InterpretersController < ApplicationController
 
   def edit
     @interpreter = Interpreter.find(params[:id])
-    if @interpreter.emails.first
-      @email = @interpreter.emails.first
-    else
-      @email = Email.new
-    end
-    if @interpreter.phones.first
-      @phone = @interpreter.phones.first
-    else
-      @phone = Phone.new
-    end
+    @email = if @interpreter.emails.first
+               @interpreter.emails.first
+             else
+               Email.new
+             end
+    @phone = if @interpreter.phones.first
+               @interpreter.phones.first
+             else
+               Phone.new
+             end
     render "form"
   end
 
