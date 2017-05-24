@@ -16,24 +16,46 @@ class InterpretersController < ApplicationController
 
   def edit
     @interpreter = Interpreter.find(params[:id])
-    @email = @interpreter.emails.first
-    @phone = @interpreter.phones.first
+    @email = if @interpreter.emails.first
+               @interpreter.emails.first
+             else
+               Email.new
+             end
+    @phone = if @interpreter.phones.first
+               @interpreter.phones.first
+             else
+               Phone.new
+             end
     render "form"
   end
 
   def create
-    new_interpreter = Interpreter.create(interpreter_params)
-    new_interpreter.emails.create(email_params)
-    new_interpreter.phones.create(phone_params)
-    redirect_to action: "index"
+    new_interpreter = Interpreter.new(interpreter_params)
+    if new_interpreter.save
+      new_email = new_interpreter.emails.new(email_params)
+      new_phone = new_interpreter.phones.new(phone_params)
+      new_email.save if new_email.valid?
+      new_phone.save if new_phone.valid?
+      flash[:notice] = "Interpreter saved"
+      redirect_to action: "index"
+    else
+      flash[:alert] = "Womp womp..."
+      redirect_to :back
+    end
   end
 
   def update
     interpreter_to_update = Interpreter.find(params[:id])
-    interpreter_to_update.update(interpreter_params)
-    interpreter_to_update.emails.update(email_params)
-    interpreter_to_update.phones.update(phone_params)
-    redirect_to action: "index"
+    interpreter_to_update.assign_attributes(interpreter_params)
+    if interpreter_to_update.save
+      update_email(interpreter_to_update)
+      update_phone(interpreter_to_update)
+      flash[:notice] = "Update successful!"
+      redirect_to action: "index"
+    else
+      flash[:alert] = "Oops, something went wrong."
+      redirect_to :back
+    end
   end
 
   def destroy
@@ -52,5 +74,23 @@ class InterpretersController < ApplicationController
 
   def phone_params
     params.require(:interpreter).permit(phone: :number)["phone"]
+  end
+
+  def update_email(interpreter)
+    if interpreter.emails.first
+      interpreter.emails.first.update(email_params)
+    else
+      new_email = interpreter.emails.build(email_params)
+      new_email.save if new_email.valid?
+    end
+  end
+
+  def update_phone(interpreter)
+    if interpreter.phones.first
+      interpreter.phones.first.update(phone_params)
+    else
+      new_phone = interpreter.phones.build(phone_params)
+      new_phone.save if new_phone.valid?
+    end
   end
 end
