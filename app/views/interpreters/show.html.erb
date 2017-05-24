@@ -3,14 +3,14 @@
 <p><%= @interpreter.accreditation %></p>
 <h2>Email:</h2>
 <p>
-  <% if @interpreter.emails.first %>
-    <%= @interpreter.emails.first.address %>
+  <% if @interpreter.email %>
+    <%= @interpreter.email.address %>
   <% end %>
 </p>
 <h2>Phone Number:</h2>
 <p>
-  <% if @interpreter.phones.first %>
-    <%= @interpreter.phones.first.number %>
+  <% if @interpreter.phone %>
+    <%= @interpreter.phone.number %>
   <% end %>
 </p>
 <h2>Available for Rehearsals?</h2>

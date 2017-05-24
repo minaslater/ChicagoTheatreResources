@@ -16,13 +16,13 @@ class InterpretersController < ApplicationController
 
   def edit
     @interpreter = Interpreter.find(params[:id])
-    @email = if @interpreter.emails.first
-               @interpreter.emails.first
+    @email = if @interpreter.email
+               @interpreter.email
              else
                Email.new
              end
-    @phone = if @interpreter.phones.first
-               @interpreter.phones.first
+    @phone = if @interpreter.phone
+               @interpreter.phone
              else
                Phone.new
              end
@@ -32,8 +32,8 @@ class InterpretersController < ApplicationController
   def create
     new_interpreter = Interpreter.new(interpreter_params)
     if new_interpreter.save
-      new_email = new_interpreter.emails.new(email_params)
-      new_phone = new_interpreter.phones.new(phone_params)
+      new_email = new_interpreter.email.new(email_params)
+      new_phone = new_interpreter.phone.new(phone_params)
       new_email.save if new_email.valid?
       new_phone.save if new_phone.valid?
       flash[:notice] = "Interpreter saved"
@@ -77,19 +77,19 @@ class InterpretersController < ApplicationController
   end
 
   def update_email(interpreter)
-    if interpreter.emails.first
-      interpreter.emails.first.update(email_params)
+    if interpreter.email
+      interpreter.email.update(email_params)
     else
-      new_email = interpreter.emails.build(email_params)
+      new_email = interpreter.email.build(email_params)
       new_email.save if new_email.valid?
     end
   end
 
   def update_phone(interpreter)
-    if interpreter.phones.first
-      interpreter.phones.first.update(phone_params)
+    if interpreter.phone
+      interpreter.phone.update(phone_params)
     else
-      new_phone = interpreter.phones.build(phone_params)
+      new_phone = interpreter.phone.build(phone_params)
       new_phone.save if new_phone.valid?
     end
   end
