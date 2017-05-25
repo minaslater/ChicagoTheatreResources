@@ -16,26 +16,15 @@ class InterpretersController < ApplicationController
 
   def edit
     @interpreter = Interpreter.find(params[:id])
-    @email = if @interpreter.email
-               @interpreter.email
-             else
-               Email.new
-             end
-    @phone = if @interpreter.phone
-               @interpreter.phone
-             else
-               Phone.new
-             end
+    @email = @interpreter.email || Email.new
+    @phone = @interpreter.phone || Phone.new
     render "form"
   end
 
   def create
-    new_interpreter = Interpreter.new(interpreter_params)
-    if new_interpreter.save
-      new_email = new_interpreter.email.new(email_params)
-      new_phone = new_interpreter.phone.new(phone_params)
-      new_email.save if new_email.valid?
-      new_phone.save if new_phone.valid?
+    new_interpreter = Interpreter.create(interpreter_params)
+    if new_interpreter.errors.messages.empty?
+      new_interpreter.create_email_phone(email_params, phone_params)
       flash[:notice] = "Interpreter saved"
       redirect_to action: "index"
     else
@@ -45,11 +34,10 @@ class InterpretersController < ApplicationController
   end
 
   def update
-    interpreter_to_update = Interpreter.find(params[:id])
-    interpreter_to_update.assign_attributes(interpreter_params)
-    if interpreter_to_update.save
-      update_email(interpreter_to_update)
-      update_phone(interpreter_to_update)
+    interpreter = Interpreter.find(params[:id])
+    interpreter.update(interpreter_params)
+    if interpreter.errors.messages.empty?
+      interpreter.update_email_phone(email_params, phone_params)
       flash[:notice] = "Update successful!"
       redirect_to action: "index"
     else
@@ -65,7 +53,12 @@ class InterpretersController < ApplicationController
   private
 
   def interpreter_params
-    params.require(:interpreter).permit(:first_name, :last_name, :accreditation, :rehearsal_avail, :performance_avail)
+    params.require(:interpreter)
+          .permit(:first_name,
+                  :last_name,
+                  :accreditation,
+                  :rehearsal_avail,
+                  :performance_avail)
   end
 
   def email_params
@@ -74,23 +67,5 @@ class InterpretersController < ApplicationController
 
   def phone_params
     params.require(:interpreter).permit(phone: :number)["phone"]
-  end
-
-  def update_email(interpreter)
-    if interpreter.email
-      interpreter.email.update(email_params)
-    else
-      new_email = interpreter.email.build(email_params)
-      new_email.save if new_email.valid?
-    end
-  end
-
-  def update_phone(interpreter)
-    if interpreter.phone
-      interpreter.phone.update(phone_params)
-    else
-      new_phone = interpreter.phone.build(phone_params)
-      new_phone.save if new_phone.valid?
-    end
   end
 end
