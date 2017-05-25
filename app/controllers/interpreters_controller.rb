@@ -95,9 +95,7 @@ class InterpretersController < ApplicationController
   end
 
   def create_email_phone(interpreter)
-    new_email = interpreter.email.new(email_params)
-    new_phone = interpreter.phone.new(phone_params)
-    new_email.save if new_email.valid?
-    new_phone.save if new_phone.valid?
+    interpreter.email = Email.create(email_params) unless email_params[:address].empty?
+    interpreter.phone = Phone.create(phone_params) unless phone_params[:number].empty?
   end
 end
