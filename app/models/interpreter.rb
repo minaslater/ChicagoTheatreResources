@@ -1,4 +1,6 @@
 class Interpreter < ApplicationRecord
+  include Contactable
+
   has_one :email, as: :recipient, dependent: :destroy
   has_one :phone, as: :owner, dependent: :destroy
 
