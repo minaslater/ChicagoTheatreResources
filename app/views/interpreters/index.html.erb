@@ -13,13 +13,13 @@
       <td><%= interpreter.name %></td>
       <td><%= interpreter.accreditation %></td>
       <td>
-        <% if interpreter.emails.first %>
-          <%= interpreter.emails.first.address %>
+        <% if interpreter.email %>
+          <%= interpreter.email.address %>
         <% end %>
       </td>
       <td>
-        <% if interpreter.phones.first %>
-          <%= interpreter.phones.first.number %>
+        <% if interpreter.phone %>
+          <%= interpreter.phone.number %>
         <% end %>
       </td>
       <td><%= interpreter.rehearsal_avail %></td>
